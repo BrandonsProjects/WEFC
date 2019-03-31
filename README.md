@@ -1,2 +1,2 @@
 # WEFC
-Windows Event Forwarding/Collection
+Windows Event Forwarding and Collection

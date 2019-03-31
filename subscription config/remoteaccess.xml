@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Subscription xmlns="http://schemas.microsoft.com/2006/03/windows/events/subscription">
+    <SubscriptionId>Remote_Access</SubscriptionId>
+    <SubscriptionType>SourceInitiated</SubscriptionType>
+    <Description>Important User and Security Group Events from all Domain Computers and Domain Controllers</Description>
+    <Enabled>true</Enabled>
+    <Uri>http://schemas.microsoft.com/wbem/wsman/1/windows/EventLog</Uri>
+    <ConfigurationMode>Custom</ConfigurationMode>
+    <Delivery Mode="Push">
+		<Batching>
+			<MaxLatencyTime>1000</MaxLatencyTime>
+		</Batching>
+		<PushSettings>
+			<Heartbeat Interval="60000"/>
+		</PushSettings>
+	</Delivery>
+	<Query>
+		<![CDATA[
+			<QueryList>
+				<!-- TS Session reconnect (4778), TS Session disconnect (4779) -->
+				<Query Id="0" Path="Security">
+					<Select Path="Security">*[System[(EventID=4778 or EventID=4779)]]</Select>
+				</Query>
+
+				<!-- Log attempted TS connect to remote server -->
+				<Query Id="1" Path="Microsoft-Windows-TerminalServices-RDPClient/Operational">
+					<Select Path="Microsoft-Windows-TerminalServices-RDPClient/Operational">*[System[(EventID=1024)]]</Select>
+				</Query>
+			</QueryList>
+		]]>
+	</Query>
+	<ReadExistingEvents>false</ReadExistingEvents>
+	<TransportName>HTTP</TransportName>
+	<ContentFormat>RenderedText</ContentFormat>
+	<Locale Language="en-US"/>
+	<LogFile>ForwardedEvents</LogFile>
+	<PublisherName>Microsoft-Windows-EventCollector</PublisherName>
+	<AllowedSourceNonDomainComputers></AllowedSourceNonDomainComputers>
+	<!-- if you have multiple domains, you will need to get the identifiers of all the domains connecting to your Event Collector and put them below. the easiest way is just to make a new subscription from the GUI and export it, then cut and paste that field in. 
+	The SDDL below is just the well known identifiers for "Domain Users" and "Domain Computers" -->                
+	<AllowedSourceDomainComputers>O:NSG:BAD:P(A;;GA;;;DC)(A;;GA;;;DD)S:</AllowedSourceDomainComputers>
+</Subscription>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Subscription xmlns="http://schemas.microsoft.com/2006/03/windows/events/subscription">
+    <SubscriptionId>Users_and_Groups</SubscriptionId>
+    <SubscriptionType>SourceInitiated</SubscriptionType>
+    <Description>Important User and Security Group Events from all Domain Computers and Domain Controllers</Description>
+    <Enabled>true</Enabled>
+    <Uri>http://schemas.microsoft.com/wbem/wsman/1/windows/EventLog</Uri>
+    <ConfigurationMode>Custom</ConfigurationMode>
+    <Delivery Mode="Push">
+		<Batching>
+			<MaxLatencyTime>1000</MaxLatencyTime>
+		</Batching>
+		<PushSettings>
+			<Heartbeat Interval="60000"/>
+		</PushSettings>
+	</Delivery>
+	<Query>
+		<![CDATA[
+			<QueryList>
+				<!-- New user added to local security group -->
+				<Query Id="0" Path="Security">
+					<Select Path="Security">*[System[(EventID=4732)]]</Select>
+					<Suppress Path="Security">*[EventData[Data[@Name='MemberSid']='S-1-5-21-110370212-536501672-627194967-6792']]</Suppress>
+				</Query>
+
+				<!-- New user added to global security group -->
+				<Query Id="1" Path="Security">
+					<Select Path="Security">*[System[(EventID=4728)]]</Select>
+					<Suppress Path="Security">
+						*[EventData[Data[@Name='TargetUserName']='WDAGUtilityAccount'] or EventData[Data[@Name='TargetUserName']='defaultuser0']]
+					</Suppress>
+				</Query>
+
+				<!-- New user added to universal security group -->
+				<Query Id="2" Path="Security">
+					<Select Path="Security">*[System[(EventID=4756)]]</Select>
+				</Query>
+
+				<!-- User removed from local security group -->
+				<Query Id="3" Path="Security">
+					<Select Path="Security">*[System[(EventID=4733)]] and (*[EventData[Data[@Name="TargetUserName"]="Administrators"]])</Select>
+					<Suppress Path="Security">
+						*[EventData[Data[@Name='TargetUserName']='WDAGUtilityAccount'] or EventData[Data[@Name='TargetUserName']='defaultuser0']]
+					</Suppress>
+				</Query>
+
+				<!-- New User Account Created(4720), User Account Enabled (4722), User Account Disabled (4725), User Account Deleted (4726) -->
+				<Query Id="4" Path="Security">
+					<Select Path="Security">*[System[(EventID=4720 or EventID=4722 or EventID=4725 or EventID=4726)]]</Select>
+					<Suppress Path="Security">
+						*[EventData[Data[@Name='TargetUserName']='WDAGUtilityAccount'] or EventData[Data[@Name='TargetUserName']='defaultuser0']]
+					</Suppress>
+				</Query>
+
+				<!-- User Account Lockouts -->
+				<Query Id="5" Path="Security">
+					<Select Path="Security">*[System[(EventID=4740)]]</Select>
+				</Query>
+
+				<!-- User removed from Global Security Group -->
+				<Query Id="6" Path="Security">
+					<Select Path="Security">*[System[(EventID=4729)]]</Select>
+				</Query>
+
+				<!-- User removed from Universal Security Group -->
+				<Query Id="7" Path="Security">
+					<Select Path="Security">*[System[(EventID=4757)]]</Select>
+				</Query>
+
+				<!-- Special Privileges (Admin-equivalent Access) assigned to new logon, excluding LocalSystem -->
+				<Query Id="8" Path="Security">
+					<Select Path="Security">*[System[(EventID=4672)]]</Select>
+					<Suppress Path="Security">*[EventData[Data[1]="S-1-5-18"]]</Suppress>
+				</Query>
+
+				<!-- Gets all Smart-card Card-Holder Verification (CHV) events (success and failure) performed on the host. -->
+				<Query Id="9" Path="Microsoft-Windows-SmartCard-Audit/Authentication">
+					<Select Path="Microsoft-Windows-SmartCard-Audit/Authentication">*</Select>
+				</Query>
+
+				<!-- User logging on with Temporary profile (1511), cannot create profile, using temporary profile (1518) -->
+				<Query Id="10" Path="Application">
+					<Select Path="Application">*[System[Provider[@Name='Microsoft-Windows-User Profiles Service'] and (EventID=1511 or EventID=1518)]]</Select>
+				</Query>
+
+				<!-- user initiated logoff -->
+				<Query Id="11" Path="Security">
+					<Select Path="Security">*[System[(EventID=4647)]]</Select>
+				</Query>
+
+				<!-- user logoff for all non-network logon sessions -->
+				<Query Id="12" Path="Security">
+					<Select Path="Security">*[System[(EventID=4634)]] and (*[EventData[Data[@Name="LogonType"] != "3"]])</Select>
+				</Query>
+			</QueryList>
+		]]>
+	</Query>
+	<ReadExistingEvents>false</ReadExistingEvents>
+	<TransportName>HTTP</TransportName>
+	<ContentFormat>RenderedText</ContentFormat>
+	<Locale Language="en-US"/>
+	<LogFile>ForwardedEvents</LogFile>
+	<PublisherName>Microsoft-Windows-EventCollector</PublisherName>
+	<AllowedSourceNonDomainComputers></AllowedSourceNonDomainComputers>
+	<!-- if you have multiple domains, you will need to get the identifiers of all the domains connecting to your Event Collector and put them below. the easiest way is just to make a new subscription from the GUI and export it, then cut and paste that field in. 
+	The SDDL below is just the well known identifiers for "Domain Users" and "Domain Computers" -->                
+	<AllowedSourceDomainComputers>O:NSG:BAD:P(A;;GA;;;DC)(A;;GA;;;DD)S:</AllowedSourceDomainComputers>
+</Subscription>

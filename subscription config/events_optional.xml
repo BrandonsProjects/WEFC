@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Subscription xmlns="http://schemas.microsoft.com/2006/03/windows/events/subscription">
+    <SubscriptionId>Events_Optional</SubscriptionId>
+    <SubscriptionType>SourceInitiated</SubscriptionType>
+    <Description>Important Optional Events from all Domain Computers and Domain Controllers</Description>
+    <Enabled>true</Enabled>
+    <Uri>http://schemas.microsoft.com/wbem/wsman/1/windows/EventLog</Uri>
+    <ConfigurationMode>Custom</ConfigurationMode>
+    <Delivery Mode="Push">
+		<Batching>
+			<MaxLatencyTime>1000</MaxLatencyTime>
+		</Batching>
+		<PushSettings>
+			<Heartbeat Interval="60000"/>
+		</PushSettings>
+	</Delivery>
+	<Query>			
+		<![CDATA[
+			<QueryList>
+				<!-- Network logon events-->
+				<Query Id="44" Path="Security">
+					<Select Path="Security">*[System[(EventID=4624)]] and (*[EventData[Data[@Name="LogonType"]="3"]])</Select>
+				</Query>
+
+				<!-- RADIUS authentication events User Assigned IP address (20274), User successfully authenticated (20250), User Disconnected (20275)  -->
+				<Query Id="45" Path="System">
+					<Select Path="System">*[System[Provider[@Name='RemoteAccess'] and (EventID=20274 or EventID=20250 or EventID=20275)]]</Select>
+				</Query>
+
+				<!-- CAPI events Build Chain (11), Private Key accessed (70), X509 object (90)-->
+				<Query Id="46" Path="Microsoft-Windows-CAPI2/Operational">
+					<Select Path="Microsoft-Windows-CAPI2/Operational">*[System[(EventID=11 or EventID=70 or EventID=90)]]</Select>
+				</Query>
+
+				<!-- CA stop/Start events CA Service Stopped (4880), CA Service Started (4881), CA DB row(s) deleted (4896), CA Template loaded (4898) -->
+				<Query Id="47" Path="Security">
+					<Select Path="Security">*[System[(EventID=4880 or EventID = 4881 or EventID = 4896 or EventID = 4898)]]</Select>
+				</Query>
+
+				<!-- Groups assigned to new login (except for well known, built-in accounts)-->
+				<Query Id="48" Path="Microsoft-Windows-LSA/Operational">
+					<Select Path="Microsoft-Windows-LSA/Operational">*[System[(EventID=300)]] and (*[EventData[Data[@Name="TargetUserSid"] != "S-1-5-20"]]) and (*[EventData[Data[@Name="TargetUserSid"] != "S-1-5-18"]]) and (*[EventData[Data[@Name="TargetUserSid"] != "S-1-5-19"]])</Select>
+				</Query>
+
+				<!-- Logoff events - for Network Logon events-->
+				<Query Id="49" Path="Security">
+					<Select Path="Security">*[System[(EventID=4634)]] and (*[EventData[Data[@Name="LogonType"] = "3"]])</Select>
+				</Query>
+
+				<!-- RRAS events – only generated on Microsoft IAS server -->
+				<Query Id="50" Path="Security">
+					<Select Path="Security">*[System[( (EventID &gt;= 6272 and EventID &lt;= 6280) )]]</Select>
+				</Query>
+
+				<Query Id="51" Path="Microsoft-Windows-DNS-Client/Operational">
+					<!-- DNS Client events Query Completed (3008) -->
+					<Select Path="Microsoft-Windows-DNS-Client/Operational">*[System[(EventID=3008)]]</Select>
+					<!-- suppresses local machine name resolution events -->
+					<Suppress Path="Microsoft-Windows-DNS-Client/Operational">*[EventData[Data[@Name="QueryOptions"]="140737488355328"]]</Suppress>
+					<!-- suppresses empty name resolution events -->
+					<Suppress Path="Microsoft-Windows-DNS-Client/Operational">*[EventData[Data[@Name="QueryResults"]=""]]</Suppress>
+				</Query>
+
+				<!-- Process Terminate (4689) -->
+				<Query Id="52" Path="Security">
+					<Select Path="Security">*[System[(EventID = 4689)]]</Select>
+				</Query>
+
+				<!-- Request made to authenticate to Wireless network (including Peer MAC (5632) -->
+				<Query Id="55" Path="Security">
+					<Select Path="Security">*[System[(EventID=5632)]]</Select>
+				</Query>
+
+				<!-- Local credential authentication events (4776), Logon with explicit credentials (4648) -->
+				<Query Id="56" Path="Security">
+					<Select Path="Security">*[System[(EventID=4776 or EventID=4648)]]</Select>
+				</Query>
+			</QueryList>
+		]]>
+	</Query>
+	<ReadExistingEvents>false</ReadExistingEvents>
+	<TransportName>HTTP</TransportName>
+	<ContentFormat>RenderedText</ContentFormat>
+	<Locale Language="en-US"/>
+	<LogFile>ForwardedEvents</LogFile>
+	<PublisherName>Microsoft-Windows-EventCollector</PublisherName>
+	<AllowedSourceNonDomainComputers></AllowedSourceNonDomainComputers>
+	<!-- if you have multiple domains, you will need to get the identifiers of all the domains connecting to your Event Collector and put them below. the easiest way is just to make a new subscription from the GUI and export it, then cut and paste that field in. 
+	The SDDL below is just the well known identifiers for "Domain Users" and "Domain Computers" -->                
+	<AllowedSourceDomainComputers>O:NSG:BAD:P(A;;GA;;;DC)(A;;GA;;;DD)S:</AllowedSourceDomainComputers>
+</Subscription>

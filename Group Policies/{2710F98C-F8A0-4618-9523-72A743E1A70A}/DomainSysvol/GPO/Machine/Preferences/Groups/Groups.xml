@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Groups clsid="{3125E937-EB16-4b4c-9934-544FC6D24D26}"><Group clsid="{6D4A79E4-529C-4481-ABD0-F5BD7EA93BA7}" name="Event Log Readers (built-in)" image="2" changed="2019-04-08 16:57:58" uid="{6B5B9B74-2FA7-4E4F-84D9-CC1207F8013E}" userContext="0" removePolicy="0"><Properties action="U" newName="" description="" deleteAllUsers="0" deleteAllGroups="0" removeAccounts="0" groupSid="S-1-5-32-573" groupName="Event Log Readers (built-in)"><Members><Member name="BUILTIN\NETWORK SERVICE" action="ADD" sid=""/></Members></Properties></Group>
-</Groups>

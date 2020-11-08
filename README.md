@@ -13,12 +13,12 @@ First, decide if you need the optional email alerts. If you currently do not hav
 2. Launch PowerShell as an administrator and navigate to the downloaded WEFC directory
 3. Set the Execution Policy to Unrestricted and execute the Setup.ps1 script
 ```
-Set-ExecutionPolicy Unrestricted
-.\Setup.ps1
+PS C:\> Set-ExecutionPolicy Unrestricted
+PS C:\> .\Setup.ps1
 ```
 4. OPTIONAL: Execute the Alerts.ps1 script to create the scheduled tasks for alerting.
 ```
-C:\WEFC\Alerts.ps1
+PS C:\> C:\WEFC\Alerts.ps1
 ```
 5. Create and link a new Group Policy Object to the Organizational Unit containing the computers from which you would like to collect logs. Import the settings from the included GPO backup. Once the GPO is applied to the computers, it can take up to an hour for events to start being forwarded to the collector.
 

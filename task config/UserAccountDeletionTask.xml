@@ -3,7 +3,7 @@
 	<RegistrationInfo>
 		<Date>2017-12-07T23:55:11.7716678</Date>
 		<Author>WEFC</Author>
-		<Description>A user was deleted</Description>
+		<Description>A user account was deleted</Description>
 	</RegistrationInfo>
 	<Triggers>
     	<EventTrigger>
@@ -39,7 +39,7 @@
 	<Actions Context="Author">
 		<Exec>
 			<Command>C:\windows\system32\WindowsPowerShell\v1.0\powershell.exe</Command>
-			<Arguments>-ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -WindowStyle Hidden -File "C:\WEFC\UserDeleted.ps1"</Arguments>
+			<Arguments>-ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -WindowStyle Hidden -File "C:\WEFC\scripts\UserDeleted.ps1"</Arguments>
 		</Exec>
 	</Actions>
 </Task>

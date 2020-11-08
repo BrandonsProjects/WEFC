@@ -18,7 +18,7 @@ Set-ExecutionPolicy Unrestricted
 ```
 4. OPTIONAL: Execute the Alerts.ps1 script to create the scheduled tasks for alerting.
 ```
-C:]WEFC\Alerts.ps1
+C:\WEFC\Alerts.ps1
 ```
 5. Create and link a new Group Policy Object to the Organizational Unit containing the computers from which you would like to collect logs. Import the settings from the included GPO backup. Once the GPO is applied to the computers, it can take up to an hour for events to start being forwarded to the collector.
 

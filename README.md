@@ -20,7 +20,7 @@ PS C:\> .\Setup.ps1
 ```
 PS C:\> C:\WEFC\Alerts.ps1
 ```
-5. Create and link a new Group Policy Object to the Organizational Unit containing the computers from which you would like to collect logs. Import the settings from the included GPO backup. Once the GPO is applied to the computers, it can take up to an hour for events to start being forwarded to the collector.
+5. Create and link new Group Policy Objects to the Organizational Unit(s) containing the client computers, member servers, and domain controllers from which you would like to collect logs. Import the settings from the included GPO backups. Once the GPOs are applied to the computers, it can take up to an hour for events to start being forwarded to the collector.
 
 ## References
 * [Palantir's windows-event-forwarding](https://github.com/palantir/windows-event-forwarding)

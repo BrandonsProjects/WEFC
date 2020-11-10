@@ -29,7 +29,7 @@ wecutil.exe qc -quiet
 # Creates the WEFC subscription(s)
 $subscriptions = Get-ChildItem -Path "$env:SystemDrive\WEFC\subscriptions\" -File -Filter "*.xml"
 foreach ($item in $subscriptions) {
-    wecutil.exe cs "$item.FullName"
+    wecutil.exe cs $item.FullName
 }
 
 # Sets the Windows Event Collector Service startup type to automatic

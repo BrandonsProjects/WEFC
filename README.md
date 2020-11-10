@@ -26,3 +26,4 @@ PS C:\> C:\WEFC\Alerts.ps1
 * [Palantir's windows-event-forwarding](https://github.com/palantir/windows-event-forwarding)
 * [Monitoring What Matters](https://docs.microsoft.com/en-us/archive/blogs/jepayne/monitoring-what-matters-windows-event-forwarding-for-everyone-even-if-you-already-have-a-siem)
 * [Intrusion Detection with Windows Event Forwarding](https://docs.microsoft.com/en-us/windows/security/threat-protection/use-windows-event-forwarding-to-assist-in-intrusion-detection)
+* [Microsoft Security Auditing](https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/security-auditing-overview)

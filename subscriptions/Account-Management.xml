@@ -58,8 +58,8 @@
         <!-- 4753: A security-disabled global group was deleted. -->
         <!-- 4754: A security-enabled universal group was created. -->
         <!-- 4755: A security-enabled universal group was changed. -->
-        <!-- 4756: A security-enabled universal group was changed. -->
-        <!-- 4757: A security-enabled universal group was changed. -->
+        <!-- 4756: A member was added to a security-enabled universal group. -->
+        <!-- 4757: A member was removed from a security-enabled universal group. -->
         <!-- 4758: A security-enabled universal group was created. -->
         <!-- 4759: A security-disabled universal group was created. -->
         <!-- 4760: A security-disabled universal group was changed. -->

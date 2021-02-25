@@ -6,9 +6,9 @@ provides a quick and easy way to get alerts for some important events happening 
 PREREQUISITES: Be sure to edit the alerting scripts in .\scripts\ will the email account and server that will be used.
 #>
 
-$input = Read-Host "STOP! Have you configured the scripts in .\scripts\ yet? (Y/N)"
+$answer = Read-Host "STOP! Have you configured the scripts in .\scripts\ yet? (Y/N)"
 
-If ($input.ToUpper() -eq 'Y') {
+If ($answer.ToUpper() -eq 'Y') {
 	schtasks.exe /create /tn "WEFC_User Creation_4720" /xml "C:\WEFC\task config\UserAccountCreationTask.xml"
 	schtasks.exe /create /tn "WEFC_User Deletion_4726" /xml "C:\WEFC\task config\UserAccountDeletionTask.xml"
 	schtasks.exe /create /tn "WEFC_User Added to Global Security Group_4728" /xml "C:\WEFC\task config\UserAddedToGlobalSecurityGroupTask.xml"

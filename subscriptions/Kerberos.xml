@@ -21,9 +21,9 @@
 			<QueryList>
 				<!-- Inspired by Microsoft Documentation and/or IADGOV -->
 				<Query Id="0" Path="Security">
-					<!-- 4768 - A Kerberos authentication ticket (TGT) was requested -->
-					<!-- 4769 - A Kerberos service ticket was requested -->
-					<!-- 4770 - A Kerberos service ticket was renewed -->
+					<!-- 4768 - A Kerberos authentication ticket (TGT) was requested. -->
+					<!-- 4769 - A Kerberos service ticket was requested. -->
+					<!-- 4770 - A Kerberos service ticket was renewed. -->
 					<!-- 4771 - A Kerberos pre-authentication failed. -->
 					<!-- 4772 - A Kerberos authentication ticket request failed. -->
 					<!-- 4773 - A Kerberos service ticket request failed. -->

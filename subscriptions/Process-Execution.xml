@@ -22,9 +22,9 @@
 				<!-- Inspired by Microsoft Documentation and/or IADGOV -->
 				<Query Id="0" Path="Security">
 					<!-- Command line auditing is disabled by default. Enable it via https://goo.gl/Gua8oj -->
-					<!-- 4688: Process Created -->
+					<!-- 4688: Process Created. -->
 					<Select Path="Security">*[System[(EventID=4688)]]</Select>
-					<!-- 4699: Process Terminated -->
+					<!-- 4689: Process Terminated. -->
 					<Select Path="Security">*[System[(EventID=4689)]]</Select>
 				</Query>
 			</QueryList>

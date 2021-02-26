@@ -32,7 +32,7 @@
 					<!-- 6419: A request was made to disable a device. -->
 					<!-- 6420: A device was disabled. -->
 					<!-- 6421: A request was made to enable a device. -->
-					<!-- 6422: A device was enabled.. -->
+					<!-- 6422: A device was enabled. -->
 					<!-- 6423: The installation of this device is forbidden by system policy. -->
 					<!-- 6424: The installation of this device was allowed after having previously been forbidden by policy. -->
 					<Select Path="Security">*[System[(EventID=6416)]]</Select>

@@ -22,9 +22,9 @@
 				<!-- Inspired by Microsoft Documentation and/or IADGOV -->
 				<Query Id="0" Path="Security">
 					<!-- Policy Change Events -->
-					<!-- 4673: A privileged service was called.. -->
-					<!-- 4674: An operation was attempted on a privileged object.. -->
-					<!-- 4985: The state of a transaction has changed.. -->
+					<!-- 4673: A privileged service was called. -->
+					<!-- 4674: An operation was attempted on a privileged object. -->
+					<!-- 4985: The state of a transaction has changed. -->
 					<Select Path="Security">*[System[(EventID=4673 or EventID=4674 or EventID=4985)]]</Select>
 				</Query>
 			</QueryList>

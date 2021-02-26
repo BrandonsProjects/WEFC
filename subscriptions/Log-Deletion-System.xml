@@ -21,7 +21,7 @@
 			<QueryList>
 				<!-- Inspired by Microsoft Documentation and/or IADGOV -->
 				<Query Id="0">
-					<!-- 104: Log File Cleared -->
+					<!-- 104: Log File Cleared. -->
 					<Select Path="System">*[System[Provider[@Name='Microsoft-Windows-Eventlog'] and Level=4 and EventID=104]]</Select>
 				</Query>
 			</QueryList>

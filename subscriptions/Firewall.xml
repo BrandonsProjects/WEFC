@@ -43,17 +43,17 @@
 					<Select Path="Security">*[System[(EventID &gt;=4956 and EventID &lt;=4958)]]</Select>
 				</Query>
 				<Query Id="2" Path="Security">
-					<!-- 5024:	The Windows Firewall Service has started successfully. -->
-					<!-- 5025:	The Windows Firewall Service has been stopped. -->
-					<!-- 5027:	The Windows Firewall Service was unable to retrieve the security policy from local storage. The service will continue enforcing the current policy. -->
-					<!-- 5028:	The Windows Firewall Service was unable to parse the new security policy. The service will continue with currently enforced policy. -->
-					<!-- 5029:	The Windows Firewall Service failed to initialize the driver. The service will continue to enforce the current policy. -->
-					<!-- 5030:	The Windows Firewall Service failed to start. -->
-					<!-- 5032:	Windows Firewall was unable to notify the user that it blocked an application from accepting incoming connections on the network. -->
-					<!-- 5033:	The Windows Firewall Driver has started successfully. -->
-					<!-- 5034:	The Windows Firewall Driver was stopped. -->
-					<!-- 5035:	The Windows Firewall Driver failed to start. -->
-					<!-- 5037:	The Windows Firewall Driver detected critical runtime error. Terminating. -->
+					<!-- 5024: The Windows Firewall Service has started successfully. -->
+					<!-- 5025: The Windows Firewall Service has been stopped. -->
+					<!-- 5027: The Windows Firewall Service was unable to retrieve the security policy from local storage. The service will continue enforcing the current policy. -->
+					<!-- 5028: The Windows Firewall Service was unable to parse the new security policy. The service will continue with currently enforced policy. -->
+					<!-- 5029: The Windows Firewall Service failed to initialize the driver. The service will continue to enforce the current policy. -->
+					<!-- 5030: The Windows Firewall Service failed to start. -->
+					<!-- 5032: Windows Firewall was unable to notify the user that it blocked an application from accepting incoming connections on the network. -->
+					<!-- 5033: The Windows Firewall Driver has started successfully. -->
+					<!-- 5034: The Windows Firewall Driver was stopped. -->
+					<!-- 5035: The Windows Firewall Driver failed to start. -->
+					<!-- 5037: The Windows Firewall Driver detected critical runtime error. Terminating. -->
 					<Select Path="Security">*[System[(EventID=5024 or EventID=5025 or EventID=5037)]]</Select>
 					<Select Path="Security">*[System[(EventID &gt;=5027 and EventID &lt;=5030)]]</Select>
 					<Select Path="Security">*[System[(EventID &gt;=5032 and EventID &lt;=5035)]]</Select>

@@ -21,7 +21,7 @@
 			<QueryList>
 				<!-- Inspired by Microsoft Documentation and/or IADGOV -->
 				<Query Id="0" Path="Security">
-					<!-- 4616: System Time Changed	-->
+					<!-- 4616: System Time Changed.	-->
 					<Select Path="Security">*[System[(EventID=4616)]]</Select>
 				</Query>
 			</QueryList>

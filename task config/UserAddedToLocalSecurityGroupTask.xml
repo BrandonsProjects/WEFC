@@ -7,9 +7,9 @@
 	</RegistrationInfo>
 	<Triggers>
 		<EventTrigger>
-      		<Enabled>true</Enabled>
-      		<Subscription>&lt;QueryList&gt;&lt;Query Id="0" Path="ForwardedEvents"&gt;&lt;Select Path="ForwardedEvents"&gt;*[System[Provider[@Name='Microsoft-Windows-Security-Auditing'] and EventID=4732]]&lt;/Select&gt;&lt;/Query&gt;&lt;/QueryList&gt;</Subscription>
-    	</EventTrigger>
+			<Enabled>true</Enabled>
+			<Subscription>&lt;QueryList&gt;&lt;Query Id="0" Path="WEC3-Account-Management"&gt;&lt;Select Path="WEC3-Account-Management"&gt;*[System[Provider[@Name='Microsoft-Windows-Security-Auditing'] and EventID=4732]]&lt;/Select&gt;&lt;/Query&gt;&lt;/QueryList&gt;</Subscription>
+		</EventTrigger>
 	</Triggers>
 	<Principals>
 		<Principal id="Author">

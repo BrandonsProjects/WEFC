@@ -14,8 +14,6 @@ To implement Windows Event Collection, there are a few requirements:
 - [Sysmon](https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon#:~:text=System%20Monitor%20(Sysmon)%20is%20a,changes%20to%20file%20creation%20time.) is not strictly required, but it dramatically assists in visibility and threat hunting. I recommend modifying [SwiftOnSecurity's Sysmon configuration](https://github.com/SwiftOnSecurity/sysmon-config) to fit your environment and then deploy that everywhere via Group Policy, SCCM, Intune, etc.
 
 ## How to use WEFC
-First, decide if you need the optional email alerts. If you currently do not have a SIEM or other log alerting system, this may be useful. If you already have alerting capabilities, you should skip it.
-
 1. Download this repository and copy it onto the machine you will use for log collection
 2. Launch PowerShell as an administrator and navigate to the downloaded WEFC directory
 3. Set the Execution Policy to Unrestricted and execute the Setup.ps1 script
@@ -23,11 +21,16 @@ First, decide if you need the optional email alerts. If you currently do not hav
 PS C:\> Set-ExecutionPolicy Unrestricted
 PS C:\> .\Setup.ps1
 ```
-4. OPTIONAL: Execute the Alerts.ps1 script to create the scheduled tasks for alerting.
+4. Create and link new Group Policy Objects to the Organizational Unit(s) containing the client computers, member servers, and domain controllers from which you would like to collect logs. Import the settings from the included GPO backups. Some settings within the GPO such as the FQDN of the collector(s) will need to be changed to match your specific organization. Once the GPOs are applied to the computers, it can take up to an hour for events to start being forwarded to the collector.
+
+## Alerts
+This section is completely optional based on your own needs.
+
+The alerting capabilities of this project are great in a pinch, but are not suited for high volumes of the corresponding alerts. For example, if 10 user accounts are added to the Domain Admins group, there will be 10 emails sent containing the last user account added to that group. This happens because PowerShell is slow and the scripts are not tied to a specific event. Even though these alerts can't be 100% accurate with high volumes, they should absolutely get someone's attention for further investigation.
+
 ```
 PS C:\> C:\WEFC\Alerts.ps1
 ```
-5. Create and link new Group Policy Objects to the Organizational Unit(s) containing the client computers, member servers, and domain controllers from which you would like to collect logs. Import the settings from the included GPO backups. Some settings within the GPO such as the FQDN of the collector(s) will need to be changed to match your specific organization. Once the GPOs are applied to the computers, it can take up to an hour for events to start being forwarded to the collector.
 
 ## References
 * [Palantir's windows-event-forwarding](https://github.com/palantir/windows-event-forwarding)

@@ -1,6 +1,4 @@
 # WEFC
-Windows Event Forwarding and Collection
-
 ## About WEFC
 WEFC (Windows Event Forwarding/Collection) is my own generic idea for automating the setup of Windows Event Collection that borrows a lot of resources from [Palantir's windows-event-forwarding](https://github.com/palantir/windows-event-forwarding) and from [Jessica Payne @MSFT](https://docs.microsoft.com/en-us/archive/blogs/jepayne/monitoring-what-matters-windows-event-forwarding-for-everyone-even-if-you-already-have-a-siem). 
 

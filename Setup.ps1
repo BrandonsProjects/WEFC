@@ -1,10 +1,11 @@
 #Requires -RunAsAdministrator
+
 # Fix for Windows Server 2019+ and Windows 10 1703+ with more than 3.5GB of RAM
 # https://docs.microsoft.com/en-us/troubleshoot/windows-server/admin-development/events-not-forwarded-by-windows-server-collector#symptoms
 # https://docs.microsoft.com/en-us/windows/application-management/svchost-service-refactoring
 
 $OperatingSystem = Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object -ExpandProperty Caption
-$MemoryCapacity = (Get-CimInstance Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum).Sum / 1GB
+$MemoryCapacity = (Get-CimInstance -ClassName Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum).Sum / 1GB
 If(($OperatingSystem -notlike "*Windows Server 2016*") -and 
 	($MemoryCapacity -gt "3.5")) {
 	Start-Process cmd.exe -ArgumentList "/c netsh http delete urlacl url=http://+:5985/wsman/"

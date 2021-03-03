@@ -1,11 +1,11 @@
-﻿$Message = Get-WinEvent -LogName WEC3-Account-Management | Where-Object {$_.Id -eq 4720} | Select-Object -First 1 | Select-Object -ExpandProperty Message
+﻿$Message = Get-WinEvent -FilterHashtable @{LogName='WEC3-Account-Management'; Id='4720'} -MaxEvents 1
 
 # Modify below this comment to fit your needs
 $Email = @{
     To = 'email@domain.com'
     From = 'SecurityAlerts@domain.com'
     Subject = '[WEFC Alert] A user account was created'
-    Body = $message
+    Body = $Message.Message
     Priority = 'High'
     SmtpServer = 'mail.domain.com'
 }

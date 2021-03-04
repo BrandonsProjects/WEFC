@@ -1,5 +1,4 @@
-﻿$Message = Get-WinEvent -LogName WEC3-Account-Management | Where-Object {$_.Id -eq 4757} | Select-Object -First 1 | Select-Object -ExpandProperty Message
-$Message = Get-WinEvent -FilterHashtable @{LogName='WEC3-Account-Management'; Id='4757'} -MaxEvents 1
+﻿$Message = Get-WinEvent -FilterHashtable @{LogName='WEC3-Account-Management'; Id='4757'} -MaxEvents 1
 
 # Modify below this comment to fit your needs
 $Email = @{

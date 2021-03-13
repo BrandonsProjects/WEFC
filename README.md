@@ -1,5 +1,4 @@
 # WEFC
-## About WEFC
 WEFC (Windows Event Forwarding/Collection) is my own generic idea for automating the setup of Windows Event Collection that borrows a lot of resources from [Palantir's windows-event-forwarding](https://github.com/palantir/windows-event-forwarding) and from [Jessica Payne @MSFT](https://docs.microsoft.com/en-us/archive/blogs/jepayne/monitoring-what-matters-windows-event-forwarding-for-everyone-even-if-you-already-have-a-siem). 
 
 This repository is designed to be an easy initial Windows log collection system for those who do not currently collect logs or for those who want to supplement their existing log collection systems. I have also included optional Scheduled Tasks and PowerShell scripts that send basic email alerts to your security team. The PowerShell scripts will need to customized to fit your needs first.

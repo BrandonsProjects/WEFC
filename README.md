@@ -25,6 +25,8 @@ This section is completely optional based on your own needs.
 
 The alerting capabilities of this project are great in a pinch, but are not suited for high volumes of the corresponding alerts. For example, if 10 user accounts are added to the Domain Admins group, there will be 10 emails sent containing the last user account added to that group. This happens because PowerShell is slow and the scripts are not tied to a specific event. Even though these alerts can't be 100% accurate with high volumes, they should absolutely get someone's attention for further investigation.
 
+If you are going to use the alerts, modify the email properties in each of the scripts before running the Alerts.ps1 script.
+
 ```
 PS C:\> C:\WEFC\Alerts.ps1
 ```

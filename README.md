@@ -18,7 +18,7 @@ To implement Windows Event Collection, there are a few requirements:
 PS C:\> Set-ExecutionPolicy Unrestricted
 PS C:\> .\Setup.ps1
 ```
-4. Create and link new Group Policy Objects to the Organizational Unit(s) containing the client computers, member servers, and domain controllers from which you would like to collect logs. Import the settings from the included GPO backups. Some settings within the GPO such as the FQDN of the collector(s) will need to be changed to match your specific organization. Once the GPOs are applied to the computers, it can take up to an hour for events to start being forwarded to the collector.
+4. Create and link new Group Policy Objects to the Organizational Unit(s) containing the client computers, member servers, and domain controllers from which you would like to collect logs. Import the settings from the included GPO backups. Some settings within the GPO such as the FQDN of the collector(s) will need to be changed to match your specific organization. Once the GPOs are applied to the computers, it can take up to an hour for events to start being forwarded to the collector. More information can be found in the README under the Group Policies directory.
 
 ## Alerts
 This section is completely optional based on your own needs.

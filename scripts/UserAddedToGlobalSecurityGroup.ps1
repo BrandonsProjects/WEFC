@@ -1,19 +1,20 @@
-﻿$Message = Get-WinEvent -FilterHashtable @{LogName='WEC3-Account-Management'; Id='4728'} -MaxEvents 1
+﻿$Message = Get-WinEvent -MaxEvents 1 `
+-FilterHashtable @{
+	LogName='WEC3-Account-Management'
+	Id='4728'
+}
 
 # Modify below this comment to fit your needs
 $Email = @{
-	To = 'email@domain.com'
-	From = 'SecurityAlerts@domain.com'
-	Subject = '[WEFC Alert] A user was added to a security-enabled global group'
-	Body = $Message.Message
-	Priority = 'High'
+	To         = 'email@domain.com'
+	From       = 'SecurityAlerts@domain.com'
+	Subject    = '[WEFC Alert] A user was added to a security-enabled global group'
+	Body       = $Message.Message
+	Priority   = 'High'
 	SmtpServer = 'mail.domain.com'
 }
 # Modify above this comment to fit your needs
 
-if (($Message | Select-String -Pattern 'Admin') -or
-	($Message | Select-String -Pattern 'Operators') -or
-	($Message | Select-String -Pattern 'ADM_')) {
-
+if ($Message | Select-String -Pattern 'Admin','Operators','ADM_') {
 	Send-MailMessage @Email
 }

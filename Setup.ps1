@@ -6,7 +6,7 @@
 
 $OperatingSystem = Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object -ExpandProperty Caption
 $MemoryCapacity = (Get-CimInstance -ClassName Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum).Sum / 1GB
-If(($OperatingSystem -notlike "*Windows Server 2016*") -and 
+If (($OperatingSystem -notlike "*Windows Server 2016*") -and 
 	($MemoryCapacity -gt "3.5")) {
 	Start-Process cmd.exe -ArgumentList "/c netsh http delete urlacl url=http://+:5985/wsman/"
 	Start-Process cmd.exe -ArgumentList "/c netsh http delete urlacl url=https://+:5986/wsman/"
